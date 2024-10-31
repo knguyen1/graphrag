@@ -55,7 +55,9 @@ class S3PipelineStorage(PipelineStorage):
             if file_filter is None:
                 return True
 
-            return all(re.match(value, item[key]) for key, value in file_filter.items())
+            return all(
+                re.match(value, item.get(key, "")) for key, value in file_filter.items()
+            )
 
         search_prefix = f"{self.prefix}/{base_dir or ''}".strip("/")
         logger.info(
@@ -63,7 +65,9 @@ class S3PipelineStorage(PipelineStorage):
         )
 
         paginator = self.s3_client.get_paginator(self.bucket_paginator)
-        page_iterator = paginator.paginate(Bucket=self.bucket_name, Prefix=self.prefix)
+        page_iterator = paginator.paginate(
+            Bucket=self.bucket_name, Prefix=search_prefix
+        )
 
         num_loaded = 0
         num_filtered = 0
