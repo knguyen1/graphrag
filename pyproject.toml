@@ -91,6 +91,8 @@ json-repair = "^0.30.0"
 
 future = "^1.0.0" # Needed until graspologic fixes their dependency
 typer = "^0.12.5"
+boto3 = "^1.35.52"
+moto = "^5.0.18"
 
 
 [tool.poetry.group.dev.dependencies]
