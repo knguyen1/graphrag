@@ -106,3 +106,27 @@ async def test_find_with_file_filter(s3_storage: S3PipelineStorage):
     )
 
     assert items == [("dir1/file1.txt", {"Key": "dir1/file1.txt"})]
+
+
+@pytest.mark.asyncio
+async def test_child(s3_storage: S3PipelineStorage):
+    s3_storage.s3_client.put_object(
+        Bucket=BUCKET_NAME,
+        Key="tests/fixtures/text/input/dulce.txt",
+        Body="Sample content",
+    )
+
+    storage = s3_storage.child("tests/fixtures/text/input")
+    items = list(storage.find(re.compile(r".*\.txt$")))
+    assert items == [("dulce.txt", {})]
+
+    output = await storage.get("dulce.txt")
+    assert len(output) > 0
+
+    await storage.set("test.txt", "Hello, world!", encoding="utf-8")
+    output = await storage.get("test.txt")
+    assert output == "Hello, world!"
+
+    await storage.delete("test.txt")
+    output = await storage.get("test.txt")
+    assert output is None
