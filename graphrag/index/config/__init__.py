@@ -10,6 +10,7 @@ from .cache import (
     PipelineFileCacheConfig,
     PipelineMemoryCacheConfig,
     PipelineNoneCacheConfig,
+    PipelineS3CacheConfig,
 )
 from .input import (
     PipelineCSVInputConfig,
@@ -24,11 +25,13 @@ from .reporting import (
     PipelineFileReportingConfig,
     PipelineReportingConfig,
     PipelineReportingConfigTypes,
+    PipelineS3ReportingConfig,
 )
 from .storage import (
     PipelineBlobStorageConfig,
     PipelineFileStorageConfig,
     PipelineMemoryStorageConfig,
+    PipelineS3StorageConfig,
     PipelineStorageConfig,
     PipelineStorageConfigTypes,
 )
@@ -60,6 +63,9 @@ __all__ = [
     "PipelineNoneCacheConfig",
     "PipelineReportingConfig",
     "PipelineReportingConfigTypes",
+    "PipelineS3CacheConfig",
+    "PipelineS3ReportingConfig",
+    "PipelineS3StorageConfig",
     "PipelineStorageConfig",
     "PipelineStorageConfigTypes",
     "PipelineTextInputConfig",

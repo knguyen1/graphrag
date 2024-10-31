@@ -19,6 +19,8 @@ class CacheType(str, Enum):
     """The none cache configuration type."""
     blob = "blob"
     """The blob cache configuration type."""
+    s3 = "s3"
+    """The blob storage type."""
 
     def __repr__(self):
         """Get a string representation."""
@@ -45,6 +47,8 @@ class InputType(str, Enum):
     """The file storage type."""
     blob = "blob"
     """The blob storage type."""
+    s3 = "s3"
+    """The blob storage type."""
 
     def __repr__(self):
         """Get a string representation."""
@@ -59,6 +63,8 @@ class StorageType(str, Enum):
     memory = "memory"
     """The memory storage type."""
     blob = "blob"
+    """The blob storage type."""
+    s3 = "s3"
     """The blob storage type."""
 
     def __repr__(self):
@@ -75,6 +81,8 @@ class ReportingType(str, Enum):
     """The console reporting configuration type."""
     blob = "blob"
     """The blob reporting configuration type."""
+    s3 = "s3"
+    """The blob storage type."""
 
     def __repr__(self):
         """Get a string representation."""
